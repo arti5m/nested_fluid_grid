@@ -11,12 +11,12 @@
 // ================================
 
 .resp(@minWidth; @rules) {
-  @media only screen and (min-width: @minWidth + 1) {
+  @media only screen and (min-width: (@minWidth + 1)) {
     @rules();
   }
 }
 .resp-range(@minWidth; @maxWidth; @rules) {
-  @media only screen and (min-width: @minWidth + 1) and (max-width: @maxWidth) {
+  @media only screen and (min-width: (@minWidth + 1)) and (max-width: @maxWidth) {
     @rules();
   }
 }

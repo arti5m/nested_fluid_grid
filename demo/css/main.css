@@ -1826,7 +1826,7 @@
   width: 100%;
   margin-left: 0;
 }
-@media only screen and (min-width: 768px + 1) {
+@media only screen and (min-width: 769px) {
   .row [data-span-babybear="1"] {
     width: 6.5%;
     margin-left: 2%;
@@ -3644,7 +3644,7 @@
     margin-left: 0;
   }
 }
-@media only screen and (min-width: 1024px + 1) {
+@media only screen and (min-width: 1025px) {
   .row [data-span-mamabear="1"] {
     width: 6.5%;
     margin-left: 2%;
@@ -5462,7 +5462,7 @@
     margin-left: 0;
   }
 }
-@media only screen and (min-width: 1200px + 1) {
+@media only screen and (min-width: 1201px) {
   .row [data-span-papabear="1"] {
     width: 6.5%;
     margin-left: 2%;
@@ -7292,25 +7292,6 @@
   padding-right: 1.375rem;
 }
 /* @end */
-/* @group basic reset */
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-body {
-  background: #fff;
-  font: 12px/20px Helvetica, Arial, sans-serif;
-}
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-h1 {
-  font-size: 30px;
-  line-height: 36px;
-}
-/* @end */
 /* @group extra styling for grid demo */
 .row {
   background: #dedede;
@@ -7344,6 +7325,25 @@ h1 {
   background: #040404;
   color: white;
   min-height: 100%;
+}
+/* @end */
+/* @group basic reset */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff;
+  font: 12px/20px Helvetica, Arial, sans-serif;
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+h1 {
+  font-size: 30px;
+  line-height: 36px;
 }
 /* @end */
 h1 {
@@ -9175,7 +9175,7 @@ h1 .span12 > .row > .span12 > .row > .span12 {
   width: 100%;
   margin-left: 0;
 }
-@media only screen and (min-width: 768px + 1) {
+@media only screen and (min-width: 769px) {
   h1 [data-span-babybear="1"] {
     width: 6.5%;
     margin-left: 2%;
@@ -10993,7 +10993,7 @@ h1 .span12 > .row > .span12 > .row > .span12 {
     margin-left: 0;
   }
 }
-@media only screen and (min-width: 1024px + 1) {
+@media only screen and (min-width: 1025px) {
   h1 [data-span-mamabear="1"] {
     width: 6.5%;
     margin-left: 2%;
@@ -12811,7 +12811,7 @@ h1 .span12 > .row > .span12 > .row > .span12 {
     margin-left: 0;
   }
 }
-@media only screen and (min-width: 1200px + 1) {
+@media only screen and (min-width: 1201px) {
   h1 [data-span-papabear="1"] {
     width: 6.5%;
     margin-left: 2%;
