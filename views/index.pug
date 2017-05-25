@@ -10,7 +10,8 @@ html.no-js
     script.
       (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
   body
-    .wrapper
+    main
+      .wrapper
       h1
         .text Nested Fluid Grid Demo
       .row
@@ -530,3 +531,42 @@ html.no-js
             .span1 1
             .span1 1
             .span1 1
+    footer
+      .footer-first.wrapper.diptych
+      .row
+        .diptych__item.span12(
+          data-span-babybear=7
+          data-span-mamabear=6
+        )
+          .block.footer-contact.row(
+            itemscope
+            itemtype="http://schema.org/Organization"
+          )
+            .block__title.span12(
+              data-span-babybear=4
+              data-span-mamabear=3
+            )
+              h2.title(itemprop="name") ACME Corp.
+            .block__content.span12(
+              data-span-babybear=3
+              data-span-mamabear=3
+            )
+              address(
+                itemscope
+                itemprop="address"
+                itemtype="http://schema.org/PostalAddress"
+              )
+                p.dept #[span(itemprop="streetAddress") Technology Center]
+                p.street #[span(itemprop="streetAddress") 123 Main Street]
+                p.locality #[span(itemprop="addressLocality") Anytown], #[span(itemprop="addressRegion") XY] #[span(itemprop="postalCode") 12345-6789]
+        .diptych__item.stacked.space-between.span12(
+          data-span-babybear=5
+          data-span-mamabear=6
+        )
+          ul.some-dumb-list
+            each val, index in {1:'foo',2:'bar',3:'baz'}
+              li= index + ': ' + val
+          .block.footer-socials
+            ul
+              li #[b Thing 1]
+              li #[b Thing 2]
