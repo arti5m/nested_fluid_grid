@@ -1,0 +1,160 @@
+// ========================================
+// Grid
+// ========================================
+
+// See: <http://davist11.github.io/nested-responsive-grid/>
+// Recreated and extended by AJC in LESS
+
+@cols: 12;
+@gutter: 2%;
+
+@one_col: (100% - (@gutter * (@cols - 1))) / @cols;
+
+.cols(@num) {
+  width: (@one_col * @num) + (@gutter * (@num - 1));
+  & when not (@num = @cols) {
+    margin-left: @gutter;
+  }
+  & when (@num = @cols) {
+    margin-left: 0;
+  }
+}
+
+.sub_cols(@num_child, @num_parent) {
+  @parent_size: (@one_col * @num_parent) + (@gutter * (@num_parent - 1));
+  @child_size: (@one_col * @num_child) + (@gutter * (@num_child - 1));
+  width: (@child_size / @parent_size) * 100%;
+  & when not (@num_child = @cols) {
+    margin-left: (@gutter / @parent_size) * 100%;
+  }
+  & when (@num_child = @cols) {
+    margin-left: 0;
+  }
+}
+
+.grand_cols(@num_child, @num_parent) {
+  @parent_size: (@one_col * @num_parent) + (@gutter * (@num_parent - 1));
+  @child_size: (@one_col * @num_child) + (@gutter * (@num_child - 1));
+  width: (@child_size / @parent_size) * 100%;
+  & when not (@num_child = @cols) {
+    margin-left: (@gutter / @parent_size) * 100%;
+  }
+  & when (@num_child = @cols) {
+    margin-left: 0;
+  }
+}
+
+/* @group grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .generate-spans(@selector, @n, @i: 1) when (@i =< @n) {
+    @selector_i: '@{selector}@{i}';
+    @selectorI: replace(e(@selector_i), "\](\d+)$", '="$1"]');
+    @{selectorI} {
+      .cols(@i);
+
+      .generate-subs(@selector, @n, @j: 1) when (@j =< @n) {
+        > .row {
+          @selector_j: '@{selector}@{j}';
+          @selectorJ: replace(e(@selector_j), "\](\d+)$", '="$1"]');
+          > @{selectorJ} {
+            .sub_cols(@j, @n);
+
+            .generate-grands(@selector, @n, @k: 1) when (@k =< @n) {
+              > .row {
+                @selector_k: '@{selector}@{k}';
+                @selectorK: replace(e(@selector_k), "\](\d+)$", '="$1"]');
+                > @{selectorK} {
+                  .sub_cols(@k, @n);
+                }
+              }
+              .generate-grands(@selector, @n, (@k + 1));
+            }
+            .generate-grands(@selector, @j);
+          }
+        }
+        .generate-subs(@selector, @n, (@j + 1));
+      }
+      .generate-subs(@selector, @i);
+    }
+    .generate-spans(@selector, @n, (@i + 1));
+  }
+  .generate-spans('.span', @cols);
+  .resp(@babybear, { .generate-spans('[data-span-babybear]', @cols); });
+  .resp(@mamabear, { .generate-spans('[data-span-mamabear]', @cols); });
+  .resp(@papabear, { .generate-spans('[data-span-papabear]', @cols); });
+
+  .first-col() {
+    margin-left: 0;
+  }
+
+  > :first-child,
+  > [class*="span"] > .row > :first-child,
+  > [class*="span"] > .row > [class*="span"] > .row > :first-child {
+    .first-col();
+  }
+}
+
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 75.8rem;
+  padding-left: 1.375rem;
+  padding-right: 1.375rem;
+}
+/* @end */
+
+
+/* @group basic reset */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  font: 12px/20px Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+h1 {
+  font-size: 30px;
+  line-height: 36px;
+}
+/* @end */
+
+/* @group extra styling for grid demo */
+.row {
+  background: #dedede;
+  margin-bottom: 20px;
+}
+.row > [class*="span"] {
+  background: #ccc;
+  min-height: 80px;
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.row .row {
+  background: none;
+  margin-bottom: 0;
+  flex: 1;
+}
+.row .row > [class*="span"] {
+  background: #aaa;
+  min-height: 100%;
+}
+.row .row .row > [class*="span"] {
+  background: #040404;
+  color: white;
+  min-height: 100%;
+}
+/* @end */
